@@ -42,7 +42,9 @@ function lisenToUser(canvas) {
         x: undefined,
         y: undefined
     }
+    //特性检测
     if (document.body.ontouchstart === undefined) {
+        //非触屏设备
         canvas.onmousedown = function (a) {
             var x = a.clientX
             var y = a.clientY
@@ -72,6 +74,7 @@ function lisenToUser(canvas) {
             using = false
         }
     } else {
+        //触屏设备
         canvas.ontouchstart = function (a) {
             var x = a.touches[0].clientX
             var y = a.touches[0].clientY
