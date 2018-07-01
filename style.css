@@ -9,7 +9,10 @@ ul,ol{
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
- }
+}
+#canvas{
+    vertical-align:top;
+}
 body{
     overflow:hidden;
 }
@@ -41,6 +44,9 @@ body{
     margin: 10px 0;
     border-radius: 50%;
     transition: all 0.3s;
+}
+.colors > li.black{
+    background: black;
 }
 .colors > li.red{
     background: red;
