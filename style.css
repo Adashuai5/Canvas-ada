@@ -10,10 +10,6 @@ ul,ol{
     fill: currentColor;
     overflow: hidden;
 }
-#canvas{
-    position: fixed;
-    vertical-align:top;
-}
 body{
     overflow:hidden;
 }
@@ -61,4 +57,22 @@ body{
 .colors > li.active{
     transform: scale(1.2);
     box-shadow: 0 0 3px rgba(0, 0, 0, 1);
+}
+.sizes{
+    position: fixed;
+    top: 15px;
+    right: 20px;
+}
+.sizes > li{
+    margin: 15px 0;
+}
+.sizes > li.thin{
+    height: 0;
+    width: 30px;
+    border-top: 5px solid black; 
+}
+.sizes > li.thick{
+    height: 0;
+    width: 30px;
+    border-top: 10px solid black; 
 }
