@@ -8,11 +8,32 @@ lisenToUser(canvas)
 var eraserEnabled = false
 eraser.onclick = function () {
     eraserEnabled = true
-    actions.className = 'actions x'
+    eraser.classList.add('active')
+    pen.classList.remove('active')
 }
-brush.onclick = function () {
+pen.onclick = function () {
     eraserEnabled = false
-    actions.className = 'actions'
+    pen.classList.add('active')
+    eraser.classList.remove('active')
+}
+
+red.onclick = function () {
+    context.strokeStyle = 'red'
+    red.classList.add('active')
+    green.classList.remove('active')
+    blue.classList.remove('active')
+}
+green.onclick = function () {
+    context.strokeStyle = 'green'
+    green.classList.add('active')
+    red.classList.remove('active')
+    blue.classList.remove('active')
+}
+blue.onclick = function () {
+    context.strokeStyle = 'blue'
+    blue.classList.add('active')
+    green.classList.remove('active')
+    red.classList.remove('active')
 }
 
 function drawLine(x1, y1, x2, y2) {
