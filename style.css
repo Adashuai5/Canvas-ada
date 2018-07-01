@@ -11,6 +11,7 @@ ul,ol{
     overflow: hidden;
 }
 #canvas{
+    position: fixed;
     vertical-align:top;
 }
 body{
