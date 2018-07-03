@@ -17,6 +17,9 @@ ul,ol{
     fill: currentColor;
     overflow: hidden;
 }
+body{
+    overflow:hidden;
+}
 .actions{
     position: fixed;
     top: 0;
