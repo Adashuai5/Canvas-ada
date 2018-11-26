@@ -65,9 +65,13 @@ blue.onclick = function () {
 
 thin.onclick = function () {
     lineWidth = 5
+    thin.classList.add('active')
+    thick.classList.remove('active')
 }
 thick.onclick = function () {
     lineWidth = 10
+    thick.classList.add('active')
+    thin.classList.remove('active')
 }
 
 function drawLine(x1, y1, x2, y2) {

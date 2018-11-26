@@ -61,7 +61,8 @@ body{
 .colors > li.blue{
     background: blue;
 }
-.colors > li.active{
+.colors > li.active,
+.sizes > li.active {
     transform: scale(1.2);
     box-shadow: 0 0 3px rgba(0, 0, 0, 1);
 }
@@ -72,6 +73,7 @@ body{
 }
 .sizes > li{
     margin: 15px 0;
+    transition: all 0.3s;
 }
 .sizes > li.thin{
     height: 0;
