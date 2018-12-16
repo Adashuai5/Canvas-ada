@@ -10,33 +10,41 @@
 </head>
 
 <body>
-    <canvas id="canvas"></canvas>
-    <div id="actions" class="actions">
+<canvas id="canvas"></canvas>
+<div id="actions" class="actions">
+    <div class="button">
+        <button id="clear">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-clear"></use>
+            </svg>
+        </button>
+        <button id="download">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-save"></use>
+            </svg>
+        </button>
+    </div>
+    <div class="svg">
         <svg id="pen" class="active icon" aria-hidden="true">
             <use xlink:href="#icon-pen"></use>
         </svg>
         <svg id="eraser" class="icon" aria-hidden="true">
             <use xlink:href="#icon-eraser"></use>
         </svg>
-        <svg id="clear" class="icon" aria-hidden="true">
-            <use xlink:href="#icon-clear"></use>
-        </svg>
-        <svg id="download" class="icon" aria-hidden="true">
-            <use xlink:href="#icon-save"></use>
-        </svg>
     </div>
-    <ol class="colors">
-        <li id="black" class="active black"></li>
-        <li id="red" class="red"></li>
-        <li id="green" class="green"></li>
-        <li id="blue" class="blue"></li>
-    </ol>
-    <ol class="sizes">
-        <li id="thin" class="active thin"></li>
-        <li id="thick" class="thick"></li>
-    </ol>
-    <script src="./main.js"></script>
-    <script src="//at.alicdn.com/t/font_728543_h8kxp12eznt.js"></script>
+</div>
+<ol class="colors">
+    <li id="black" class="active black"></li>
+    <li id="red" class="red"></li>
+    <li id="green" class="green"></li>
+    <li id="blue" class="blue"></li>
+</ol>
+<ol class="sizes">
+    <li id="thin" class="active thin"></li>
+    <li id="thick" class="thick"></li>
+</ol>
+<script src="./main.js"></script>
+<script src="//at.alicdn.com/t/font_728543_h8kxp12eznt.js"></script>
 </body>
 
 </html>

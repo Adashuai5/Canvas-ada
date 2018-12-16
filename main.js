@@ -82,16 +82,19 @@ function drawLine(x1, y1, x2, y2) {
     context.stroke();
     context.closePath();
 }
+
 function drawCricle(x, y, radius) {
     context.beginPath();
     context.arc(x, y, radius, 0, Math.PI * 2);
     context.fill();
 }
+
 function autoSetCanvasSize(canvas) {
     canvasSize()
     window.onresize = function () {
         canvasSize()
     }
+
     function canvasSize() {
         var pageWidth = document.documentElement.clientWidth
         var pageHeight = document.documentElement.clientHeight
@@ -99,6 +102,7 @@ function autoSetCanvasSize(canvas) {
         canvas.height = pageHeight
     }
 }
+
 function lisenToUser(canvas) {
 
     var using = false;
@@ -125,11 +129,13 @@ function lisenToUser(canvas) {
         canvas.onmousemove = function (a) {
             var x = a.clientX
             var y = a.clientY
-            if (!using) { return }
+            if (!using) {
+                return
+            }
             if (eraserEnabled) {
                 context.clearRect(x - 5, y - 5, 10, 10)
             } else {
-                var newPoint = { x: x, y: y }
+                var newPoint = {x: x, y: y}
                 drawCricle(x, y, lineWidth / 2)
                 drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
                 lastPoint = newPoint
@@ -156,11 +162,13 @@ function lisenToUser(canvas) {
         canvas.ontouchmove = function (a) {
             var x = a.touches[0].clientX
             var y = a.touches[0].clientY
-            if (!using) { return }
+            if (!using) {
+                return
+            }
             if (eraserEnabled) {
                 context.clearRect(x - 5, y - 5, 10, 10)
             } else {
-                var newPoint = { x: x, y: y }
+                var newPoint = {x: x, y: y}
                 drawCricle(x, y, lineWidth / 2)
                 drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
                 lastPoint = newPoint
