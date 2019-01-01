@@ -1,9 +1,11 @@
-ul, ol {
+ul,
+ol {
     list-style: none
 }
 
 * {
-    margin: 0;padding: 0;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -16,7 +18,8 @@ ul, ol {
 }
 
 .icon {
-    width: 1em; height: 1em;
+    width: 1em;
+    height: 1em;
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
@@ -24,26 +27,21 @@ ul, ol {
 
 body {
     overflow: hidden;
+    background-color: blanchedalmond;
 }
 
-.actions {
-    width: 100%;
+.svg,
+.button {
     position: fixed;
     top: 0;
-    left: 0;
     padding: 10px;
-    display: flex;
-    justify-content: space-between;
 }
 
-.actions svg {
-    width: 1.8em;
-    height: 1.8em;
-    transition: all 0.3s;
-    margin: 0 5px;
+.button {
+    left: 0;
 }
 
-.actions button {
+.button button {
     width: 40px;
     height: 40px;
     white-space: nowrap;
@@ -54,29 +52,35 @@ body {
     color: #fff;
 }
 
-.actions #clear {
+.button #clear {
     background-color: #f56c6c;
 }
 
-.actions #download {
+.button #download {
     background-color: deepskyblue;
 }
 
-.actions button svg {
+.button button svg {
     width: 1.2em;
     height: 1.2em;
     transition: all 0.3s;
     margin: 0 5px;
 }
 
-.actions button svg.active {
+svg.active {
     fill: deepskyblue;
     transform: scale(1.2);
 }
 
-.actions svg.active {
-    fill: deepskyblue;
-    transform: scale(1.2);
+.svg {
+    right: 0;
+}
+
+.svg svg {
+    width: 1.8em;
+    height: 1.8em;
+    transition: all 0.3s;
+    margin: 0 5px;
 }
 
 .colors {
@@ -85,7 +89,7 @@ body {
     left: 14px;
 }
 
-.colors > li {
+.colors>li {
     width: 20px;
     height: 20px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
@@ -94,24 +98,24 @@ body {
     transition: all 0.3s;
 }
 
-.colors > li.black {
+.colors>li.black {
     background: black;
 }
 
-.colors > li.red {
+.colors>li.red {
     background: red;
 }
 
-.colors > li.green {
+.colors>li.green {
     background: green;
 }
 
-.colors > li.blue {
+.colors>li.blue {
     background: blue;
 }
 
-.colors > li.active,
-.sizes > li.active {
+.colors>li.active,
+.sizes>li.active {
     transform: scale(1.2);
     box-shadow: 0 0 3px rgba(0, 0, 0, 1);
 }
@@ -122,18 +126,18 @@ body {
     right: 25px;
 }
 
-.sizes > li {
+.sizes>li {
     margin: 15px 0;
     transition: all 0.3s;
 }
 
-.sizes > li.thin {
+.sizes>li.thin {
     height: 0;
     width: 30px;
     border-top: 5px solid black;
 }
 
-.sizes > li.thick {
+.sizes>li.thick {
     height: 0;
     width: 30px;
     border-top: 10px solid black;
