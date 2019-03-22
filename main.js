@@ -17,22 +17,16 @@ pen.onclick = function () {
     pen.classList.add('active')
     eraser.classList.remove('active')
 }
-clear.onclick = function () {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-}
+clear.onclick = clear()
 
 download.onclick = function () {
-    var w = canvas.width;
-    var h = canvas.height;
-    var data;
-    data = context.getImageData(0, 0, w, h);
     var compositeOperation = context.globalCompositeOperation;
     context.globalCompositeOperation = "destination-over";
     context.fillStyle = '#fff';
-    context.fillRect(0, 0, w, h);
+    context.fillRect(0, 0, canvas.width, canvas.height);
     var imageData = canvas.toDataURL("image/png");
-    context.clearRect(0, 0, w, h);
-    context.putImageData(data, 0, 0);
+    clear()
+    context.putImageData(context.getImageData(0, 0, canvas.width, canvas.height), 0, 0);
     context.globalCompositeOperation = compositeOperation;
     var a = document.createElement('a')
     document.body.appendChild(a)
@@ -196,4 +190,8 @@ function lisenToUser(canvas) {
             using = false
         }
     }
+}
+
+function clear() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
 }
