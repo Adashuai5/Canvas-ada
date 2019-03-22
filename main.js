@@ -20,11 +20,23 @@ pen.onclick = function () {
 clear.onclick = function () {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
+
 download.onclick = function () {
-    var url = canvas.toDataURL("image/png")
+    var w = canvas.width;
+    var h = canvas.height;
+    var data;
+    data = context.getImageData(0, 0, w, h);
+    var compositeOperation = context.globalCompositeOperation;
+    context.globalCompositeOperation = "destination-over";
+    context.fillStyle = '#fff';
+    context.fillRect(0, 0, w, h);
+    var imageData = canvas.toDataURL("image/png");
+    context.clearRect(0, 0, w, h);
+    context.putImageData(data, 0, 0);
+    context.globalCompositeOperation = compositeOperation;
     var a = document.createElement('a')
     document.body.appendChild(a)
-    a.href = url
+    a.href = imageData
     a.download = "mypaint"
     a.target = '_blank'
     a.click()
@@ -135,7 +147,10 @@ function lisenToUser(canvas) {
             if (eraserEnabled) {
                 context.clearRect(x - 5, y - 5, 10, 10)
             } else {
-                var newPoint = {x: x, y: y}
+                var newPoint = {
+                    x: x,
+                    y: y
+                }
                 drawCricle(x, y, lineWidth / 2)
                 drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
                 lastPoint = newPoint
@@ -168,7 +183,10 @@ function lisenToUser(canvas) {
             if (eraserEnabled) {
                 context.clearRect(x - 5, y - 5, 10, 10)
             } else {
-                var newPoint = {x: x, y: y}
+                var newPoint = {
+                    x: x,
+                    y: y
+                }
                 drawCricle(x, y, lineWidth / 2)
                 drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
                 lastPoint = newPoint
