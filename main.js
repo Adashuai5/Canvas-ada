@@ -1,5 +1,5 @@
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
+var canvas = document.getElementById('canvas')
+var context = canvas.getContext('2d')
 var lineWidth = 5
 
 autoSetCanvasSize(canvas)
@@ -17,17 +17,18 @@ pen.onclick = function () {
     pen.classList.add('active')
     eraser.classList.remove('active')
 }
-clear.onclick = clear()
+clear.onclick = function () {
+    context.clearRect(0, 0, canvas.width, canvas.height)
+}
 
 download.onclick = function () {
-    var compositeOperation = context.globalCompositeOperation;
-    context.globalCompositeOperation = "destination-over";
-    context.fillStyle = '#fff';
-    context.fillRect(0, 0, canvas.width, canvas.height);
+    var compositeOperation = context.globalCompositeOperation
+    context.globalCompositeOperation = "destination-over"
+    context.fillStyle = '#fff'
+    context.fillRect(0, 0, canvas.width, canvas.height)
     var imageData = canvas.toDataURL("image/png");
-    clear()
-    context.putImageData(context.getImageData(0, 0, canvas.width, canvas.height), 0, 0);
-    context.globalCompositeOperation = compositeOperation;
+    context.putImageData(context.getImageData(0, 0, canvas.width, canvas.height), 0, 0)
+    context.globalCompositeOperation = compositeOperation
     var a = document.createElement('a')
     document.body.appendChild(a)
     a.href = imageData
@@ -190,8 +191,4 @@ function lisenToUser(canvas) {
             using = false
         }
     }
-}
-
-function clear() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
 }
