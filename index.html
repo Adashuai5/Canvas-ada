@@ -1,48 +1,66 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>MyCanvas</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-<body>
+  <body>
     <canvas id="canvas"></canvas>
-    <div class="button">
+    <div id="toggle">
+      <svg class="icon close" aria-hidden="true" id="toggleClose">
+        <use xlink:href="#icon-close" class="close"></use>
+      </svg>
+      <svg class="icon open show" aria-hidden="true" id="toggleOpen">
+        <use xlink:href="#icon-open" class="open"></use>
+      </svg>
+    </div>
+    <div id="tools">
+      <div class="button">
         <button id="clear">
-            <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-clear"></use>
-            </svg>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-clear"></use>
+          </svg>
         </button>
         <button id="download">
-            <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-save"></use>
-            </svg>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-save"></use>
+          </svg>
         </button>
-    </div>
-    <div class="svg">
+      </div>
+      <div class="svg">
         <svg id="pen" class="active icon" aria-hidden="true">
-            <use xlink:href="#icon-pen"></use>
+          <use xlink:href="#icon-pen"></use>
         </svg>
         <svg id="eraser" class="icon" aria-hidden="true">
-            <use xlink:href="#icon-eraser"></use>
+          <use xlink:href="#icon-eraser"></use>
         </svg>
-    </div>
-    <ol class="colors">
+      </div>
+      <ol class="colors">
         <li id="black" class="active black"></li>
         <li id="red" class="red"></li>
         <li id="green" class="green"></li>
         <li id="blue" class="blue"></li>
-    </ol>
-    <ol class="sizes">
-        <li id="thin" class="active thin"></li>
-        <li id="thick" class="thick"></li>
-    </ol>
+        <input type="color" name="" id="currentColor" autocompleteHTML5 />
+      </ol>
+      <div class="sizes">
+        <input
+          type="range"
+          id="range"
+          name="range"
+          min="1"
+          max="20"
+          value="5"
+        />
+      </div>
+    </div>
     <script src="./main.js"></script>
-    <script src="//at.alicdn.com/t/font_728543_h8kxp12eznt.js"></script>
-</body>
-
+    <script src="//at.alicdn.com/t/font_728543_43y7jvi0lsx.js"></script>
+  </body>
 </html>

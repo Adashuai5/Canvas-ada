@@ -1,144 +1,191 @@
 ul,
 ol {
-    list-style: none
+  list-style: none;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  white-space: nowrap;
+  cursor: pointer;
+  outline: inherit;
+  border: none;
+}
+
+svg {
+  transition: all 0.3s;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+#tools {
+  display: block;
+}
+
+#toggle {
+  position: fixed;
+  padding-left: 5px;
+  top: 0;
+  left: 0;
+}
+
+#toggle svg {
+  display: none;
+}
+
+#toggle svg.show {
+  width: 2.5em;
+  height: 2.5em;
+  display: block;
 }
 
 #canvas {
-    display: block;
-    background: white;
-    position: fixed;
-    left: 0;
-    top: 0;
+  display: block;
+  background: white;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 
 .icon {
-    width: 1em;
-    height: 1em;
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
 
 body {
-    overflow: hidden;
-    background-color: blanchedalmond;
+  overflow: hidden;
+  background-color: blanchedalmond;
 }
 
 .svg,
 .button {
-    position: fixed;
-    top: 0;
-    padding: 10px;
+  position: fixed;
+  padding: 10px;
 }
-
+.svg {
+  top: 0;
+}
 .button {
-    left: 0;
+  top: 40px;
+  left: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .button button {
-    width: 40px;
-    height: 40px;
-    white-space: nowrap;
-    cursor: pointer;
-    border-radius: 50%;
-    outline: inherit;
-    border: none;
-    color: #fff;
+  margin-bottom: 6px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
 }
 
 .button #clear {
-    background-color: #f56c6c;
+  background-color: #f56c6c;
 }
 
 .button #download {
-    background-color: deepskyblue;
+  background-color: deepskyblue;
 }
 
 .button button svg {
-    width: 1.2em;
-    height: 1.2em;
-    transition: all 0.3s;
-    margin: 0 5px;
+  width: 1.2em;
+  height: 1.2em;
 }
 
-svg.active {
-    fill: deepskyblue;
-    transform: scale(1.2);
+.svg svg.active {
+  fill: deepskyblue;
+  transform: scale(1.2);
 }
 
 .svg {
-    right: 0;
+  right: 0;
 }
 
 .svg svg {
-    width: 1.8em;
-    height: 1.8em;
-    transition: all 0.3s;
-    margin: 0 5px;
+  width: 1.8em;
+  height: 1.8em;
 }
 
 .colors {
-    position: fixed;
-    top: calc(50vh - 95px);
-    left: 14px;
+  position: fixed;
+  top: calc(50vh - 95px);
+  left: 14px;
 }
 
-.colors>li {
-    width: 20px;
-    height: 20px;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
-    margin: 10px 0;
-    border-radius: 50%;
-    transition: all 0.3s;
+.colors > li {
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+  margin: 10px;
+  border-radius: 50%;
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
-.colors>li.black {
-    background: black;
+.colors > li.black {
+  background: black;
 }
 
-.colors>li.red {
-    background: red;
+.colors > li.red {
+  background: red;
 }
 
-.colors>li.green {
-    background: green;
+.colors > li.green {
+  background: green;
 }
 
-.colors>li.blue {
-    background: blue;
+.colors > li.blue {
+  background: blue;
 }
 
-.colors>li.active,
-.sizes>li.active {
-    transform: scale(1.2);
-    box-shadow: 0 0 3px rgba(0, 0, 0, 1);
+.colors > li.active,
+.sizes > li.active {
+  transform: scale(1.2);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 1);
+}
+.colors #currentColor {
+  display: inline-block;
+  box-sizing: border-box;
+  height: 40px;
+  width: 40px;
+  padding: 4px;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  font-size: 0;
+  position: relative;
+  cursor: pointer;
 }
 
 .sizes {
-    position: fixed;
-    top: 45px;
-    right: 25px;
+  position: fixed;
+  top: 5%;
+  right: 50px;
 }
 
-.sizes>li {
-    margin: 15px 0;
-    transition: all 0.3s;
+.sizes #range {
+  transform-origin: 75px 75px;
+  transform: rotate(90deg);
+  cursor: pointer;
+  -webkit-appearance: none; /*去除默认样式*/
+  background-color: #ebeff4;
+  padding: 0;
+  height: 4px;
+  border: none;
 }
-
-.sizes>li.thin {
-    height: 0;
-    width: 30px;
-    border-top: 5px solid black;
-}
-
-.sizes>li.thick {
-    height: 0;
-    width: 30px;
-    border-top: 10px solid black;
+.sizes #range::-webkit-slider-thumb {
+  -webkit-appearance: none; /*去除默认样式*/
+  cursor: default;
+  top: 0;
+  height: 20px;
+  width: 20px;
+  transform: translateY(0px);
+  background: #fff;
+  border-radius: 15px;
+  border: 5px solid deepskyblue;
 }
