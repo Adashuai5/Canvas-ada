@@ -1,15 +1,16 @@
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
 var lineWidth = 5;
+var eraserEnabled = false;
+var imageDataFragment;
+var canvasHistory = [];
+var step = -1;
 
 autoSetCanvasSize(canvas);
 
 listenToUser(canvas);
 
-var eraserEnabled = false;
-
 toggle.onclick = function(e) {
-  console.log(tools);
   if (e.target.matches(".open")) {
     toggleClose.classList.add("show");
     toggleOpen.classList.remove("show");
@@ -20,6 +21,7 @@ toggle.onclick = function(e) {
     tools.style.display = "block";
   }
 };
+
 eraser.onclick = function() {
   eraserEnabled = true;
   eraser.classList.add("active");
@@ -33,7 +35,6 @@ pen.onclick = function() {
 clear.onclick = function() {
   context.clearRect(0, 0, canvas.width, canvas.height);
 };
-
 download.onclick = function() {
   var compositeOperation = context.globalCompositeOperation;
   context.globalCompositeOperation = "destination-over";
@@ -116,6 +117,49 @@ range.onchange = function(e) {
   lineWidth = e.target.value * 1;
 };
 
+back.onclick = function() {
+  if (step >= 0) {
+    step -= 1;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    let canvasPic = new Image();
+    canvasPic.src = canvasHistory[step];
+    canvasPic.addEventListener("load", () => {
+      context.drawImage(canvasPic, 0, 0);
+    });
+    go.classList.add("active");
+    if (step < 0) {
+      back.classList.remove("active");
+    }
+  }
+};
+go.onclick = function() {
+  if (step < canvasHistory.length - 1) {
+    step += 1;
+    let canvasPic = new Image();
+    canvasPic.src = canvasHistory[step];
+    canvasPic.addEventListener("load", () => {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(canvasPic, 0, 0);
+    });
+    back.classList.add("active");
+    if (step === canvasHistory.length - 1) {
+      go.classList.remove("active");
+    }
+  }
+};
+
+function autoSetCanvasSize(canvas) {
+  canvasSize();
+  window.onresize = function() {
+    canvasSize();
+  };
+}
+
+function canvasSize() {
+  canvas.width = document.documentElement.clientWidth;
+  canvas.height = document.documentElement.clientHeight;
+}
+
 function drawLine(x1, y1, x2, y2) {
   context.beginPath();
   context.moveTo(x1, y1);
@@ -131,19 +175,6 @@ function drawCircle(x, y, radius) {
   context.fill();
 }
 
-function autoSetCanvasSize(canvas) {
-  canvasSize();
-  window.onresize = function() {
-    canvasSize();
-  };
-}
-
-function canvasSize() {
-  var pageWidth = document.documentElement.clientWidth;
-  var pageHeight = document.documentElement.clientHeight;
-  canvas.width = pageWidth;
-  canvas.height = pageHeight;
-}
 function listenToUser(canvas) {
   var using = false;
   var lastPoint = {
@@ -158,12 +189,7 @@ function listenToUser(canvas) {
       var y = a.clientY;
       using = true;
       if (eraserEnabled) {
-        context.clearRect(
-          x - lineWidth / 2,
-          y - lineWidth / 2,
-          lineWidth,
-          lineWidth
-        );
+        clearRect(x, y);
       } else {
         lastPoint = {
           x: x,
@@ -178,12 +204,7 @@ function listenToUser(canvas) {
         return;
       }
       if (eraserEnabled) {
-        context.clearRect(
-          x - lineWidth / 2,
-          y - lineWidth / 2,
-          lineWidth,
-          lineWidth
-        );
+        clearRect(x, y);
       } else {
         var newPoint = {
           x: x,
@@ -196,6 +217,7 @@ function listenToUser(canvas) {
     };
     canvas.onmouseup = function() {
       using = false;
+      saveFragment();
     };
   } else {
     //触屏设备
@@ -204,12 +226,7 @@ function listenToUser(canvas) {
       var y = a.touches[0].clientY;
       using = true;
       if (eraserEnabled) {
-        context.clearRect(
-          x - lineWidth / 2,
-          y - lineWidth / 2,
-          lineWidth,
-          lineWidth
-        );
+        clearRect(x, y);
       } else {
         lastPoint = {
           x: x,
@@ -224,12 +241,7 @@ function listenToUser(canvas) {
         return;
       }
       if (eraserEnabled) {
-        context.clearRect(
-          x - lineWidth / 2,
-          y - lineWidth / 2,
-          lineWidth,
-          lineWidth
-        );
+        clearRect(x, y);
       } else {
         var newPoint = {
           x: x,
@@ -242,8 +254,23 @@ function listenToUser(canvas) {
     };
     canvas.ontouchend = function() {
       using = false;
+      saveFragment();
     };
   }
+}
+
+function clearRect(x, y) {
+  context.clearRect(x - lineWidth / 2, y - lineWidth / 2, lineWidth, lineWidth);
+}
+
+function saveFragment() {
+  step += 1;
+  if (step < canvasHistory.length) {
+    canvasHistory.length = step;
+  }
+  canvasHistory.push(canvas.toDataURL());
+  back.classList.add("active");
+  go.classList.remove("active");
 }
 
 document.body.addEventListener(
