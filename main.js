@@ -34,6 +34,10 @@ pen.onclick = function() {
 };
 clear.onclick = function() {
   context.clearRect(0, 0, canvas.width, canvas.height);
+  canvasHistory = [];
+  step = -1;
+  back.classList.remove("active");
+  go.classList.remove("active");
 };
 download.onclick = function() {
   var compositeOperation = context.globalCompositeOperation;
